@@ -30,11 +30,13 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.PanelTop = new System.Windows.Forms.Panel();
+            this.LabelRowCount = new System.Windows.Forms.Label();
+            this.ButtonStart = new System.Windows.Forms.Button();
             this.ButtonOpen = new System.Windows.Forms.Button();
             this.TextBoxOpenfile = new System.Windows.Forms.TextBox();
             this.PanelBottom = new System.Windows.Forms.Panel();
+            this.PanelResultBottom = new System.Windows.Forms.Panel();
             this.TextBoxResult = new System.Windows.Forms.TextBox();
-            this.ButtonStart = new System.Windows.Forms.Button();
             this.PanelTop.SuspendLayout();
             this.PanelBottom.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +47,7 @@
             // 
             // PanelTop
             // 
+            this.PanelTop.Controls.Add(this.LabelRowCount);
             this.PanelTop.Controls.Add(this.ButtonStart);
             this.PanelTop.Controls.Add(this.ButtonOpen);
             this.PanelTop.Controls.Add(this.TextBoxOpenfile);
@@ -54,9 +57,28 @@
             this.PanelTop.Size = new System.Drawing.Size(800, 125);
             this.PanelTop.TabIndex = 0;
             // 
+            // LabelRowCount
+            // 
+            this.LabelRowCount.AutoSize = true;
+            this.LabelRowCount.Location = new System.Drawing.Point(31, 68);
+            this.LabelRowCount.Name = "LabelRowCount";
+            this.LabelRowCount.Size = new System.Drawing.Size(137, 20);
+            this.LabelRowCount.TabIndex = 2;
+            this.LabelRowCount.Text = "Number of Lines : 0";
+            // 
+            // ButtonStart
+            // 
+            this.ButtonStart.Location = new System.Drawing.Point(636, 12);
+            this.ButtonStart.Name = "ButtonStart";
+            this.ButtonStart.Size = new System.Drawing.Size(94, 29);
+            this.ButtonStart.TabIndex = 1;
+            this.ButtonStart.Text = "Start";
+            this.ButtonStart.UseVisualStyleBackColor = true;
+            this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
+            // 
             // ButtonOpen
             // 
-            this.ButtonOpen.Location = new System.Drawing.Point(548, 51);
+            this.ButtonOpen.Location = new System.Drawing.Point(527, 12);
             this.ButtonOpen.Name = "ButtonOpen";
             this.ButtonOpen.Size = new System.Drawing.Size(94, 29);
             this.ButtonOpen.TabIndex = 1;
@@ -66,44 +88,44 @@
             // 
             // TextBoxOpenfile
             // 
-            this.TextBoxOpenfile.Location = new System.Drawing.Point(51, 53);
+            this.TextBoxOpenfile.Location = new System.Drawing.Point(31, 12);
             this.TextBoxOpenfile.Name = "TextBoxOpenfile";
             this.TextBoxOpenfile.Size = new System.Drawing.Size(459, 27);
             this.TextBoxOpenfile.TabIndex = 0;
             // 
             // PanelBottom
             // 
+            this.PanelBottom.Controls.Add(this.PanelResultBottom);
             this.PanelBottom.Controls.Add(this.TextBoxResult);
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBottom.Location = new System.Drawing.Point(0, 125);
             this.PanelBottom.Name = "PanelBottom";
-            this.PanelBottom.Size = new System.Drawing.Size(800, 325);
+            this.PanelBottom.Size = new System.Drawing.Size(800, 526);
             this.PanelBottom.TabIndex = 0;
+            // 
+            // PanelResultBottom
+            // 
+            this.PanelResultBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelResultBottom.Location = new System.Drawing.Point(0, 491);
+            this.PanelResultBottom.Name = "PanelResultBottom";
+            this.PanelResultBottom.Size = new System.Drawing.Size(800, 35);
+            this.PanelResultBottom.TabIndex = 1;
             // 
             // TextBoxResult
             // 
-            this.TextBoxResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TextBoxResult.Dock = System.Windows.Forms.DockStyle.Top;
             this.TextBoxResult.Location = new System.Drawing.Point(0, 0);
             this.TextBoxResult.Multiline = true;
             this.TextBoxResult.Name = "TextBoxResult";
-            this.TextBoxResult.Size = new System.Drawing.Size(800, 325);
+            this.TextBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextBoxResult.Size = new System.Drawing.Size(800, 491);
             this.TextBoxResult.TabIndex = 0;
-            // 
-            // ButtonStart
-            // 
-            this.ButtonStart.Location = new System.Drawing.Point(667, 53);
-            this.ButtonStart.Name = "ButtonStart";
-            this.ButtonStart.Size = new System.Drawing.Size(94, 29);
-            this.ButtonStart.TabIndex = 1;
-            this.ButtonStart.Text = "Start";
-            this.ButtonStart.UseVisualStyleBackColor = true;
-            this.ButtonStart.Click += new System.EventHandler(this.ButtonOpen_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 651);
             this.Controls.Add(this.PanelBottom);
             this.Controls.Add(this.PanelTop);
             this.Name = "Form1";
@@ -125,6 +147,8 @@
         private System.Windows.Forms.Panel PanelBottom;
         private System.Windows.Forms.TextBox TextBoxResult;
         private System.Windows.Forms.Button ButtonStart;
+        private System.Windows.Forms.Panel PanelResultBottom;
+        private System.Windows.Forms.Label LabelRowCount;
     }
 }
 
