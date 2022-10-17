@@ -15,7 +15,9 @@ namespace LendingNotesTools
     {
 
         private string _filePath;
+        private string _textboxResult = string.Empty;
         private List<ProsperNoteInfo> _prosperNotesList;
+
         private BackgroundWorker backgroundWorker1 = new BackgroundWorker(); 
         public Form1()
         {
@@ -31,7 +33,7 @@ namespace LendingNotesTools
         {
             backgroundWorker1.DoWork +=new DoWorkEventHandler(backgroundWorker1_DoWork);
             
-// backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
+            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
           
        //     backgroundWorker1.ProgressChanged +=new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
         }
@@ -43,7 +45,25 @@ namespace LendingNotesTools
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+
+            var status = _prosperNotesList.Select(x => x.Status).Distinct().ToList();
+
+            var totalInvest = _prosperNotesList.Select(x => x.InvestmentAmount).Sum();
+            var totalpaymentRecived = _prosperNotesList.Select(x => x.PaymentsReceived).Sum();
+            var totalOutstanding = _prosperNotesList.Select(x => x.PrincipalOutstanding).Sum();
+            var profits = totalpaymentRecived - totalInvest;
+            var earlyDate = _prosperNotesList.Select(x=>x.PurchaseDate).Distinct().OrderBy(y=>y).First();
+            var year = (((DateTime.Now.Year - earlyDate.Year) * 12) + DateTime.Now.Month - earlyDate.Month) / 12;
+            var percentage = profits / totalInvest;
+            var anualPercentage = percentage / year;
+
+
+            this.DataGridViewNotes.DataSource = _prosperNotesList;
+            this.DataGridViewNotes.Invalidate();
+            this.DataGridViewNotes.Visible = true;
+
+          //  this.DataGridViewBottom
+
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -73,14 +93,17 @@ namespace LendingNotesTools
                                 SubStatus = lineArray[10]
                             });
                     }
+
+
+                   
+
                     counter++;
 
-                    if (TextBoxResult.InvokeRequired)
-                    {
-                        TextBoxResult.Invoke(new MethodInvoker(delegate {
-                            TextBoxResult.Text = $"{TextBoxResult.Text}{counter}:{ln}\r\n";
-                        }));
-                    }
+
+                    _textboxResult = $"{_textboxResult}{counter}:{ln}\r\n";
+
+
+                   
 
 
                     if (LabelRowCount.InvokeRequired)
